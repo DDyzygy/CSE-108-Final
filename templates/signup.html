@@ -3,12 +3,13 @@
     <head>
         <title>Signup</title>
         <link rel="stylesheet" href="../static/styles.css" />
+        <!-- <script type="text/javascript" src="../static/for.js"></script> -->
     </head>
 
     <body>
         <div class="signupShape">
             <h1>Sign Up</h1>
-            <form action="/signup_handler.php" onsubmit="window.location.href='forum.html'; return false;" method="post">
+            <form id="userSubmission" method="post">
                 <label for="username">Username</label><br />
                 <input
                     type="text"

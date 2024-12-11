@@ -24,16 +24,24 @@ with app.app_context():
 def default_page():
     return render_template('forum.html')
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
-    username = request.form.get('username')
-    password = request.form.get('password')
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
 
-    hashed_password = generate_password_hash(password)
+        if username and password:
+            hashed_password = generate_password_hash(password)
 
-    new_user = User(username=username, password_hash = hashed_password)
-    db.session.add(new_user)
-    db.session.commit()
+            new_user = User(username=username, password_hash=hashed_password)
+            db.session.add(new_user)
+            db.session.commit()
+            #return "Signup successful!"
+            return render_template('forum.html')
+        else:
+            return "Please fill out all fields."
+        
+    return render_template('signup.html')
 
 
 
