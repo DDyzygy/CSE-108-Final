@@ -1,33 +1,33 @@
 <!doctype html>
 <html>
     <head>
-        <title>Forum Website</title>
+        <title>Signup</title>
         <link rel="stylesheet" href="../static/styles.css" />
     </head>
 
     <body>
-        <div class="loginShape">
-            <h1>Login</h1>
-            <form action="/templates/forum.html">
+        <div class="signupShape">
+            <h1>Sign Up</h1>
+            <form action="/signup_handler.php" onsubmit="window.location.href='forum.html'; return false;" method="post">
                 <label for="username">Username</label><br />
                 <input
                     type="text"
-                    id="numbers"
-                    name="numbers"
+                    id="username"
+                    name="username"
                     class="fieldinput"
                 />
                 <br />
                 <label for="password">Password</label><br />
                 <input
-                    type="text"
+                    type="password"
                     id="password"
-                    name="numbers"
+                    name="password"
                     class="fieldinput"
                 />
                 <br />
                 <input
                     type="submit"
-                    value="Login"
+                    value="Sign Up"
                     style="
                         width: 20%;
                         background-color: #002856;
@@ -37,21 +37,7 @@
                     "
                 />
             </form>
-            <br />
-            <button 
-                onclick="window.location.href='signup.html';" 
-                style="
-                    width: 20%;
-                    background-color: #002856;
-                    color: white;
-                    font-family: Calibri;
-                    font-size: 16px;
-                    margin-top: 10px;
-                "
-            >
-                Don't have a login ? Sign up here!
-            </button>
-            <div class="loginStyle"></div>
+            <div class="signupStyle"></div>
         </div>
     </body>
 </html>
