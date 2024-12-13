@@ -12,6 +12,26 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
+    
+class Comments(db.Model):
+    comment_id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(10000), nullable = False)
+    post_id = db.Column(db.Integer, nullable = False)
+    comment_time = db.Column(db.Time, nullable = False)
+    comment_date = db.Column(db.Date, nullable = False)
+    user_id = db.Column(db.Integer, nullable = False)
+    comment_upvotes = db.Column(db.Integer, nullable = True)
+    comment_downvotes = db.Column(db.Integer, nullable = True)
+    
+class Posts(db.Model):
+    post_id = db.Column(db.Integer, primary_key=True)
+    post_comment = db.Column(db.String(10000), nullable = False)
+    post_time = db.Column(db.Time, nullable = False)
+    post_date = db.Column(db.Date, nullable = False)
+    user_id = db.Column(db.Integer, nullable = False)
+    post_upvotes = db.Column(db.Integer, nullable = True)
+    post_downvotes = db.Column(db.Integer, nullable = True)
+    
 
 # app = Flask(__name__)
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///final.sqlite"
