@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 from werkzeug.security import generate_password_hash, check_password_hash 
@@ -40,9 +40,23 @@ class Posts(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/')
+@app.route('/', methods = ['GET', 'POST'])
 def default_page():
-    return render_template('forum.html')
+    if 'user_id' in session:
+        return redirect(url_for('homepage'))
+    
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = User.query.filter_by(username = username).first()
+        if user:
+            if check_password_hash(user.password_hash, password):
+                session['user_id'] = user.id
+                session['username'] = user.username
+                return redirect(url_for('homepage'))
+                
+    else:
+        return render_template('forum.html')
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():
@@ -63,6 +77,18 @@ def signup_page():
         
     return render_template('signup.html')
 
+@app.route('/homepage')
+def homepage():
+    if 'user_id' not in session:
+        return redirect(url_for('default_page'))
+    else:
+        return render_template('homepage.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('user_id', None)
+    session.pop('username', None)
+    return redirect(url_for('default_page'))
 
 
 if __name__ == "__main__":

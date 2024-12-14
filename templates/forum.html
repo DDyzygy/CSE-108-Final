@@ -8,34 +8,37 @@
     <body>
         <div class="loginShape">
             <h1>Login</h1>
-            <form action="/templates/forum.html">
+            <form method = "POST">
                 <label for="username">Username</label><br />
                 <input
                     type="text"
-                    id="numbers"
-                    name="numbers"
+                    id="username"
+                    name="username"
                     class="fieldinput"
+                    required
                 />
                 <br />
                 <label for="password">Password</label><br />
                 <input
                     type="text"
                     id="password"
-                    name="numbers"
+                    name="password"
                     class="fieldinput"
+                    required
                 />
                 <br />
-                <input
+                <button
                     type="submit"
                     value="Login"
                     style="
-                        width: 20%;
-                        background-color: #002856;
-                        color: white;
-                        font-family: Calibri;
-                        font-size: 16px;
+                    width: 20%;
+                    background-color: #002856;
+                    color: white;
+                    font-family: Calibri;
+                    font-size: 16px;
+                    margin-top: 10px;
                     "
-                />
+                >Logout</button>
             </form>
             <br />
             <button
