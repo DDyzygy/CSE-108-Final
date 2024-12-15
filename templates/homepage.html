@@ -2,31 +2,34 @@
 <html>
     <head>
         <title>Forum Homepage</title>
-        <link rel="stylesheet" href="../static/styles.css" />
+        <link rel="stylesheet" href="/static/styles.css" />
     </head>
 
     <body style="background-color: white">
-        <div class="navBar" style="font-size: 20px; background-color: #002856">
-            UCM Forum Temporary Text
+        <div class="navBar">
+            <span class = "welcome">Welcome, {{ user.username }}!</span>
+            <nav>
+            <a class = "logout" href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+
         </div>
-        <div
-            class="navBar"
-            style="
-                font-size: 20px;
-                background-color: #caa52b;
-                height: 1%;
-                margin-top: 2.3%;
-            "
-        ></div>
-        <h1>Topics</h1>
-        <button class="forumTopicButton">
-            <h1>UCM Events</h1>
-            <div></div>
-        </button>
-        <button class="forumTopicButton"><h1>UCM Course Discussion</h1></button>
-        <button class="forumTopicButton"><h1>UCM Alerts</h1></button>
-        <a href="{{ url_for('logout') }}">Logout</a>
-        <div class="sideBar"></div>
+        <br>
+        <h2 class = "topics_main">UC Merced Forum Topics</h2>
+
+
+        <div class="container">
+            {% for topic in topics %}
+                <div class="topics">
+                    <a href="{{ url_for('topic_posts', topic_id=topic.topic_id) }}">
+                        <div class="forumTopicButton">
+                            <div class="backgroundImage" style="background-image: url('/static/{{ topic.topic_title.replace(" ", "_") }}.jpeg');"></div>
+                            <div class="textContent">{{ topic.topic_title }}</div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        
 
         
     </body>

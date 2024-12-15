@@ -15,7 +15,23 @@ body {
 
 h1 {
     font-weight: 500;
+    z-index: 1;
 }
+
+hr{
+    border: 1px solid #caa52b;
+}
+
+.topics_main{
+    font-size: 40px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-align: center;
+}
+
+a:visited { 
+    text-decoration: none; 
+    color:red; }
 
 input {
     height: 35px;
@@ -45,16 +61,11 @@ h2 {
     font-size: 12px;
 }
 
-.forumTopicButton {
-    height: 25%;
-    width: 20%;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-color: #002856;
-    background-color: whitesmoke;
-    margin-top: 2%;
+h3{
+    position: relative;
+    text-align: center;
+    font-size: 40px;
+    text-decoration: underline;
 }
 
 .fieldinput {
@@ -91,12 +102,36 @@ h2 {
 }
 
 .navBar {
-    position: absolute;
-    height: 6%;
-    width: 100%;
-    background-color: white;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #002856;
+    border-bottom: 7px solid #caa52b;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.welcome{
+    font-size: 25px;
+    font-weight: bold;
     color: white;
-    margin-top: -0.5%;
+    margin-top: 10px;
+}
+
+.navBar a.logout{
+    color: white;
+    font-size: 25px;
+    padding: 8px 15px;
+    border: #caa52b;
+    background-color: transparent;
+    transition: 0.3s;
+    margin-bottom: 10px;
+}
+
+.navBar a.logout:hover{
+    background-color: #caa52b;
+    color: white;
 }
 
 .test {
@@ -113,4 +148,119 @@ h2 {
     color: black;
     margin-left: 80%;
     margin-top: -14.2%;
+}
+
+.forumTopicButton {
+    height: 250px;
+    width: 400px;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: solid #002856;
+    position: relative;
+    display: flex;
+    margin: 2%;
+    font-size: 30px;
+    color: black;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: underline;
+    vertical-align: middle;
+    transition: 0.5s;
+  }
+  
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.textContent{
+    z-index: 1;
+    padding: 20px;
+   text-align: center;
+    justify-self: center;
+    margin-top: 20%;
+    font-weight: 900;
+}
+
+.backgroundImage{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+    z-index: -1;
+
+}
+
+  .forumTopicButton:hover, .backgroundImage:hover{
+    background-color: #0028569b;
+    color: white;
+  }
+  
+.logout, .logout:visited{
+    color: white;
+    font-size: 20px;
+    float: right;
+    margin-right: 20px;
+}
+
+.topic_desc{
+    position: relative;
+    padding: 25px 16px;
+    border-bottom: 5px solid #caa52b;
+    background-color: #152347e8;
+    color: white;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.posts_list{
+    position: relative;
+    padding: 25px 16px;
+    border-bottom: 5px solid #caa52b;
+    background-color: #152347be;
+    color: white;
+    font-size: 30px;
+    margin-right: 20px;
+}
+
+.posts_list ul{
+    list-style-type: none;
+}
+
+.post{
+    background-color: #152347d2;
+    border-bottom: 2px solid #caa52b;
+    color: white;
+    padding: 25px 16px;
+    margin-right: 50px;
+}
+
+.post p{
+    font-size: 25px;
+    font-weight: 100;
+}
+
+.post small{
+    font-size: 13px;
+    color:white;
+}
+
+.post a{
+    text-decoration: none;
+    color:white;
 }

@@ -13,24 +13,30 @@ class User(db.Model):
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(200), nullable=False)
     
-class Comments(db.Model):
-    comment_id = db.Column(db.Integer, primary_key=True)
-    comment = db.Column(db.String(10000), nullable = False)
-    post_id = db.Column(db.Integer, nullable = False)
-    comment_time = db.Column(db.Time, nullable = False)
-    comment_date = db.Column(db.Date, nullable = False)
-    user_id = db.Column(db.Integer, nullable = False)
-    comment_upvotes = db.Column(db.Integer, nullable = True)
-    comment_downvotes = db.Column(db.Integer, nullable = True)
+class Topics(db.Model):    
+    topic_id = db.Column(db.Integer, primary_key=True)
+    topic_title = db.Column(db.String(700), nullable = False)
+    topic_desc = db.Column(db.String(10000), nullable = True)
+    posts = db.relationship('Posts', backref='topic', lazy=True)
     
 class Posts(db.Model):
     post_id = db.Column(db.Integer, primary_key=True)
     post_comment = db.Column(db.String(10000), nullable = False)
-    post_time = db.Column(db.Time, nullable = False)
-    post_date = db.Column(db.Date, nullable = False)
-    user_id = db.Column(db.Integer, nullable = False)
-    post_upvotes = db.Column(db.Integer, nullable = True)
-    post_downvotes = db.Column(db.Integer, nullable = True)
+    post_time_date = db.Column(db.DateTime, nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    post_upvotes = db.Column(db.Integer, default = 0)
+    post_downvotes = db.Column(db.Integer, default = 0)
+    topic_id = db.Column(db.Integer, db.ForeignKey('topics.topic_id'), nullable = False)
+    comments = db.relationship('Comments', backref='post', lazy=True)
+
+class Comments(db.Model):
+    comment_id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(10000), nullable = False)
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.post_id'), nullable = False)
+    comment_time_date = db.Column(db.DateTime, nullable = False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
+    comment_upvotes = db.Column(db.Integer, default = 0)
+    comment_downvotes = db.Column(db.Integer, default = 0)
     
 
 # app = Flask(__name__)
@@ -79,10 +85,24 @@ def signup_page():
 
 @app.route('/homepage')
 def homepage():
-    if 'user_id' not in session:
+    username = session.get('username')
+    topics = Topics.query.all()
+    if 'username' not in session:
         return redirect(url_for('default_page'))
     else:
-        return render_template('homepage.html')
+        user = User.query.filter_by(username = username).first()
+        return render_template('homepage.html', user = user, topics = topics)
+    
+@app.route('/topic/<int:topic_id>')
+def topic_posts(topic_id):
+    topic = Topics.query.get(topic_id)
+    posts = Posts.query.filter_by(topic_id = topic_id).all()
+    return render_template('topic_posts.html', topic = topic, posts = posts)
+
+@app.route('/post/<int:post_id>')
+def post_comments(post_id):
+    post = Posts.query.get(post_id)
+    return render_template('post_comments.html', post = post)
 
 @app.route('/logout')
 def logout():

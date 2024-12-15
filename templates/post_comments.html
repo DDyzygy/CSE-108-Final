@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Topic Posts</title>
+        <link rel="stylesheet" href="/static/styles.css" />
+    </head>
+
+    <body style="background-color: white">
+
+<div class="navBar">
+    <nav>
+    <a class = "logout" href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+</div>
+
+<div>
+    <div class = "topic_desc">
+    <span class = "desc">Description: {{post.post_comment}}</span>
+    </div>
+    <div class = "posts_list">
+        {% if post.comments %}
+                <ul>
+                    {% for comment in post.comments %}
+                        <li class = "post">
+                            Replace_with_Username:<hr>
+                            <p>{{comment.comment}}</p>
+                            <small>Posted: {{comment.comment_time_date}}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No comments have been made on this topic yet!</p>
+            {% endif %}
+</div>
+        
+    </body>
+</html>
