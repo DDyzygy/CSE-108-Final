@@ -4,46 +4,47 @@
         <title>Topic Posts</title>
         <link rel="stylesheet" href="/static/styles.css" />
     </head>
-
+ 
     <body style="background-color: white">
-
-<div class="navBar">
-    <span class = "welcome">Welcome to {{ topic.topic_title }}!<br></span>
-    <nav>
-    <a class = "logout" href="{{ url_for('logout') }}">Logout</a>
-    </nav>
-</div>
-<div>
-    <a href="{{ url_for('add_post', topic_id=topic.topic_id) }}">
-        <button>Add Post</button>
-    </a>
-</div>
-
-<div>
-    <div class = "topic_desc">
-    <span class = "desc">Description: {{topic.topic_desc}}</span>
-    </div>
-    <div class = "posts_list">
-    <ul>
-        {% for post in posts %}
-        <li class = "post">
-            <a href="/post/{{post.post_id}}">
-            Replace_with_Username:<hr>
-            <p>{{post.post_comment}}</p>
-            <small>Posted: {{post.post_time_date}}</small>
+ 
+        <div class="navBar">
+            <span class="welcome">Welcome to {{ topic.topic_title }}!<br></span>
+            <nav>
+                <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </div>
+ 
+        <div class="posts_list">
+            <a href="{{ url_for('add_post', topic_id=topic.topic_id) }}">
+                <button>Add Post</button>
             </a>
-            <br>
-            <img src = "../static/upvote_inactive.png" class = "upvote_downvote" id = "upvote">
-            <img src = "../static/downvote_inactive.png"class = "upvote_downvote" id = "downvote">
-        </li>
-        <br>
-        {%else%}
-            <li>
-                No posts have been made on this topic yet!
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-        
+        </div>
+ 
+        <div>
+            <div class="topic_desc">
+                <span class="desc">Description: {{ topic.topic_desc }}</span>
+            </div>
+            <div class="posts_list">
+                <ul>
+                    {% for post in posts %}
+                    <li class="post">
+                        <a href="/post/{{ post.post_id }}">
+                            {{ post.username }}:<hr>
+                            <p>{{ post.post_comment }}</p>
+                            <small>Posted: {{ post.post_time_date }}</small>
+                        </a>
+                        <br>
+                        <img src="../static/upvote_inactive.png" class="upvote_downvote" id="upvote">
+                        <img src="../static/downvote_inactive.png" class="upvote_downvote" id="downvote">
+                    </li>
+                    <br>
+                    {% else %}
+                    <li>
+                        No posts have been made on this topic yet!
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </body>
 </html>

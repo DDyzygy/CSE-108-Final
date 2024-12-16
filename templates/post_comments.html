@@ -1,46 +1,45 @@
 <!doctype html>
 <html>
     <head>
-        <title>Topic Posts</title>
+        <title>Post Comments</title>
         <link rel="stylesheet" href="/static/styles.css" />
     </head>
-
+ 
     <body style="background-color: white">
-
-<div class="navBar">
-    <nav>
-    <a class = "logout" href="{{ url_for('logout') }}">Logout</a>
-    </nav>
-</div>
-<div>
-    <a href="{{ url_for('add_comment', post_id=post.post_id) }}">
-        <button>Add Comment</button>
-    </a>
-</div>
-
-<div>
-    <div class = "topic_desc">
-    <span class = "desc">Description: {{post.post_comment}}</span>
-    </div>
-    <div class = "posts_list">
-        {% if post.comments %}
-                <ul>
-                    {% for comment in post.comments %}
-                        <li class = "post">
-                            Replace_with_Username:<hr>
-                            <p>{{comment.comment}}</p>
-                            <small>Posted: {{comment.comment_time_date}}</small>
-                            <br>
-                            <img src = "../static/upvote_inactive.png" class = "upvote_downvote" id = "upvote">
-                            <img src = "../static/downvote_inactive.png"class = "upvote_downvote" id = "downvote">
-                        </li>
-                        
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>No comments have been made on this topic yet!</p>
-            {% endif %}
-</div>
-        
+ 
+        <div class="navBar">
+            <span class="welcome">Post Details:<br></span>
+            <nav>
+                <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </div>
+ 
+        <div class="topic_desc">
+            <h2>Post Details</h2>
+            <p>{{ post.post_comment }}</p>
+            <small>Posted by: {{ post_user.username }} on {{ post.post_time_date }}</small>
+        </div>
+ 
+        <div class="posts_list">
+            <h3>Comments</h3>
+            <ul>
+                {% for comment, user in comments %}
+                <li class="post">
+                    <strong>{{ user.username }}:</strong> 
+                    <p>{{ comment.comment }}</p>
+                    <small>Posted on: {{ comment.comment_time_date }}</small>
+                </li>
+                {% else %}
+                <li>No comments have been made on this post yet!</li>
+                {% endfor %}
+            </ul>
+        </div>
+ 
+        <div class="posts_list">
+            <a href="{{ url_for('add_comment', post_id=post.post_id) }}">
+                <button>Add Comment</button>
+            </a>
+        </div>
     </body>
 </html>
+ 
