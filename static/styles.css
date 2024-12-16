@@ -10,7 +10,6 @@ body {
     align-items: center;
     font-family: Calibri;
     font-weight: 600;
-    overflow: hidden;
 }
 
 h1 {
@@ -257,10 +256,33 @@ h3{
 
 .post small{
     font-size: 13px;
-    color:white;
 }
 
 .post a{
     text-decoration: none;
     color:white;
+}
+.post a:hover{
+    text-decoration: underline;
+    color:#caa52b;
+
+}
+
+.upvote_downvote{
+    height: 70px;
+    width: 70px;
+    margin-top: 20px;
+    margin-right: 20px;
+    transition: 0.5s;
+    
+}
+
+#downvote:hover{
+    background-image: url('../static/downvote_active.png');
+    background-size: 70px 70px;
+}
+
+#upvote:hover{
+    background-image: url('../static/upvote_active.png');
+    background-size: 70px 70px;
 }

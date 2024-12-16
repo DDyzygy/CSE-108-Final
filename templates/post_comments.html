@@ -25,7 +25,11 @@
                             Replace_with_Username:<hr>
                             <p>{{comment.comment}}</p>
                             <small>Posted: {{comment.comment_time_date}}</small>
+                            <br>
+                            <img src = "../static/upvote_inactive.png" class = "upvote_downvote" id = "upvote">
+                            <img src = "../static/downvote_inactive.png"class = "upvote_downvote" id = "downvote">
                         </li>
+                        
                     {% endfor %}
                 </ul>
             {% else %}
