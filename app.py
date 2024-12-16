@@ -3,10 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 
 from werkzeug.security import generate_password_hash, check_password_hash 
 
+from datetime import datetime
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'our_key'
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///final.sqlite"
 db = SQLAlchemy(app)
+
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -112,6 +116,46 @@ def logout():
     session.pop('user_id', None)
     session.pop('username', None)
     return redirect(url_for('default_page'))
+
+@app.route('/add_post/<int:topic_id>', methods=['GET', 'POST'])
+def add_post(topic_id):
+    if 'user_id' not in session:
+        return redirect(url_for('default_page'))
+    
+    if request.method == 'POST':
+        post_comment = request.form.get('post_comment')
+        if post_comment:
+            new_post = Posts(
+                post_comment=post_comment,
+                post_time_date=datetime.now(),
+                user_id=session['user_id'],
+                topic_id=topic_id
+            )
+            db.session.add(new_post)
+            db.session.commit()
+            return redirect(url_for('topic_posts', topic_id=topic_id))
+    
+    return render_template('add_post.html', topic_id=topic_id)
+
+@app.route('/add_comment/<int:post_id>', methods=['GET', 'POST'])
+def add_comment(post_id):
+    if 'user_id' not in session:
+        return redirect(url_for('default_page'))
+    
+    if request.method == 'POST':
+        comment = request.form.get('comment')
+        if comment:
+            new_comment = Comments(
+                comment=comment,
+                comment_time_date=datetime.now(),
+                user_id=session['user_id'],
+                post_id=post_id
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+            return redirect(url_for('post_comments', post_id=post_id))
+    
+    return render_template('add_comment.html', post_id=post_id)
 
 
 if __name__ == "__main__":

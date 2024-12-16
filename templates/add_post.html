@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Add Post</title>
+        <link rel="stylesheet" href="/static/styles.css" />
+    </head>
+    <body>
+        <h1>Add a Post</h1>
+        <form method="POST">
+            <textarea name="post_comment" placeholder="Enter your post here" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{{ url_for('topic_posts', topic_id=topic_id) }}">Cancel</a>
+    </body>
+</html>

@@ -12,6 +12,11 @@
     <a class = "logout" href="{{ url_for('logout') }}">Logout</a>
     </nav>
 </div>
+<div>
+    <a href="{{ url_for('add_comment', post_id=post.post_id) }}">
+        <button>Add Comment</button>
+    </a>
+</div>
 
 <div>
     <div class = "topic_desc">
