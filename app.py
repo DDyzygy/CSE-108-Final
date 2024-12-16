@@ -46,23 +46,26 @@ class Comments(db.Model):
 with app.app_context():
     db.create_all()
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def default_page():
-    if 'user_id' in session:
-        return redirect(url_for('homepage'))
-    
+    session.pop('user_id', None)
+    session.pop('username', None)
+
+    error = None
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        user = User.query.filter_by(username = username).first()
-        if user:
-            if check_password_hash(user.password_hash, password):
-                session['user_id'] = user.id
-                session['username'] = user.username
-                return redirect(url_for('homepage'))
-                
-    else:
-        return render_template('forum.html')
+        user = User.query.filter_by(username=username).first()
+        if user and check_password_hash(user.password_hash, password):
+            # Set session only if credentials are correct
+            session['user_id'] = user.id
+            session['username'] = user.username
+            return redirect(url_for('homepage'))
+        else:
+            error = "Username/Password does not match"
+    
+    return render_template('forum.html', error=error)
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup_page():

@@ -3,12 +3,19 @@
     <head>
         <title>Forum Website</title>
         <link rel="stylesheet" href="/static/styles.css" />
+        <script>
+            function showError(errorMessage) {
+                if (errorMessage && errorMessage !== 'None') {
+                    alert(errorMessage);
+                }
+            }
+        </script>
     </head>
 
-    <body>
+    <body onload="showError('{{ error|default('') }}')">
         <div class="loginShape">
             <h1>Login</h1>
-            <form method = "POST">
+            <form method="POST">
                 <label for="username">Username</label><br />
                 <input
                     type="text"
@@ -20,7 +27,7 @@
                 <br />
                 <label for="password">Password</label><br />
                 <input
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     class="fieldinput"
