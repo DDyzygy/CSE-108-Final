@@ -84,7 +84,7 @@ def signup_page():
             db.session.add(new_user)
             db.session.commit()
             #return "Signup successful!"
-            return render_template('forum.html')
+            return redirect(url_for('default_page'))
         else:
             return "Please fill out all fields."
  
