@@ -17,20 +17,21 @@ h1 {
     z-index: 1;
 }
 
-hr{
+hr {
     border: 1px solid #caa52b;
 }
 
-.topics_main{
+.topics_main {
     font-size: 40px;
     font-weight: 600;
     text-decoration: underline;
     text-align: center;
 }
 
-a:visited { 
-    text-decoration: none; 
-    color:red; }
+a:visited {
+    text-decoration: none;
+    color: red;
+}
 
 input {
     height: 35px;
@@ -60,7 +61,7 @@ h2 {
     font-size: 12px;
 }
 
-h3{
+h3 {
     position: relative;
     text-align: center;
     font-size: 40px;
@@ -100,6 +101,31 @@ h3{
     margin-top: -76.8%;
 }
 
+.signUpShape {
+    height: 80%;
+    width: 40%;
+    margin-top: -1%;
+    margin-left: 60%;
+    background-color: white;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    padding-left: 3%;
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
+    position: absolute;
+}
+
+.signUpStyle {
+    height: 100%;
+    width: 2%;
+    margin-left: 59%;
+    background-color: #caa52b;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 10px;
+    margin-top: -0.4%;
+    position: absolute;
+}
+
 .navBar {
     display: flex;
     position: relative;
@@ -111,14 +137,14 @@ h3{
     margin-right: 20px;
 }
 
-.welcome{
+.welcome {
     font-size: 25px;
     font-weight: bold;
     color: white;
     margin-top: 10px;
 }
 
-.navBar a.logout{
+.navBar a.logout {
     color: white;
     font-size: 25px;
     padding: 8px 15px;
@@ -128,7 +154,7 @@ h3{
     margin-bottom: 10px;
 }
 
-.navBar a.logout:hover{
+.navBar a.logout:hover {
     background-color: #caa52b;
     color: white;
 }
@@ -171,9 +197,9 @@ h3{
     text-decoration: underline;
     vertical-align: middle;
     transition: 0.5s;
-  }
-  
-.container{
+}
+
+.container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -181,16 +207,16 @@ h3{
     margin-top: 20px;
 }
 
-.textContent{
+.textContent {
     z-index: 1;
     padding: 20px;
-   text-align: center;
+    text-align: center;
     justify-self: center;
     margin-top: 20%;
     font-weight: 900;
 }
 
-.backgroundImage{
+.backgroundImage {
     content: "";
     position: absolute;
     top: 0;
@@ -202,22 +228,23 @@ h3{
     background-position: center;
     opacity: 0.3;
     z-index: -1;
-
 }
 
-  .forumTopicButton:hover, .backgroundImage:hover{
+.forumTopicButton:hover,
+.backgroundImage:hover {
     background-color: #0028569b;
     color: white;
-  }
-  
-.logout, .logout:visited{
+}
+
+.logout,
+.logout:visited {
     color: white;
     font-size: 20px;
     float: right;
     margin-right: 20px;
 }
 
-.topic_desc{
+.topic_desc {
     position: relative;
     padding: 25px 16px;
     border-bottom: 5px solid #caa52b;
@@ -227,7 +254,7 @@ h3{
     margin-right: 20px;
 }
 
-.posts_list{
+.posts_list {
     position: relative;
     padding: 25px 16px;
     border-bottom: 5px solid #caa52b;
@@ -237,11 +264,11 @@ h3{
     margin-right: 20px;
 }
 
-.posts_list ul{
+.posts_list ul {
     list-style-type: none;
 }
 
-.post{
+.post {
     background-color: #152347d2;
     border-bottom: 2px solid #caa52b;
     color: white;
@@ -249,40 +276,38 @@ h3{
     margin-right: 50px;
 }
 
-.post p{
+.post p {
     font-size: 25px;
     font-weight: 100;
 }
 
-.post small{
+.post small {
     font-size: 13px;
 }
 
-.post a{
+.post a {
     text-decoration: none;
-    color:white;
+    color: white;
 }
-.post a:hover{
+.post a:hover {
     text-decoration: underline;
-    color:#caa52b;
-
+    color: #caa52b;
 }
 
-.upvote_downvote{
+.upvote_downvote {
     height: 70px;
     width: 70px;
     margin-top: 20px;
     margin-right: 20px;
     transition: 0.5s;
-    
 }
 
-#downvote:hover{
-    background-image: url('../static/downvote_active.png');
+#downvote:hover {
+    background-image: url("../static/downvote_active.png");
     background-size: 70px 70px;
 }
 
-#upvote:hover{
-    background-image: url('../static/upvote_active.png');
+#upvote:hover {
+    background-image: url("../static/upvote_active.png");
     background-size: 70px 70px;
 }
