@@ -2,30 +2,32 @@
 <html>
     <head>
         <title>Post Comments</title>
-        <link rel="stylesheet" href="/static/styles.css" />
+        <link rel="stylesheet" href="../static/styles.css" />
     </head>
- 
+
     <body style="background-color: white">
- 
         <div class="navBar">
-            <span class="welcome">Post Details:<br></span>
+            <span class="welcome">Post Details:<br /></span>
             <nav>
                 <a class="logout" href="{{ url_for('logout') }}">Logout</a>
             </nav>
         </div>
- 
+
         <div class="topic_desc">
             <h2>Post Details</h2>
             <p>{{ post.post_comment }}</p>
-            <small>Posted by: {{ post_user.username }} on {{ post.post_time_date }}</small>
+            <small
+                >Posted by: {{ post_user.username }} on {{ post.post_time_date
+                }}</small
+            >
         </div>
- 
+
         <div class="posts_list">
             <h3>Comments</h3>
             <ul>
                 {% for comment, user in comments %}
                 <li class="post">
-                    <strong>{{ user.username }}:</strong> 
+                    <strong>{{ user.username }}:</strong>
                     <p>{{ comment.comment }}</p>
                     <small>Posted on: {{ comment.comment_time_date }}</small>
                 </li>
@@ -34,7 +36,7 @@
                 {% endfor %}
             </ul>
         </div>
- 
+
         <div class="posts_list">
             <a href="{{ url_for('add_comment', post_id=post.post_id) }}">
                 <button>Add Comment</button>
@@ -42,4 +44,3 @@
         </div>
     </body>
 </html>
- 
