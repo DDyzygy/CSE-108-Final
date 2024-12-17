@@ -61,7 +61,6 @@ def default_page():
         password = request.form.get('password')
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password_hash, password):
-            # Set session only if credentials are correct
             session['user_id'] = user.id
             session['username'] = user.username
             return redirect(url_for('homepage'))
@@ -83,7 +82,6 @@ def signup_page():
             new_user = User(username=username, password_hash=hashed_password)
             db.session.add(new_user)
             db.session.commit()
-            #return "Signup successful!"
             return redirect(url_for('default_page'))
         else:
             return "Please fill out all fields."
@@ -103,22 +101,18 @@ def homepage():
 @app.route('/topic/<int:topic_id>')
 def topic_posts(topic_id):
     topic = Topics.query.get(topic_id)
-    posts = Posts.query.filter_by(topic_id=topic_id).all()
-    # Add user information to the posts
+    posts = Posts.query.filter_by(topic_id=topic_id).order_by(Posts.post_time_date.desc()).all()
     for post in posts:
         post.username = User.query.get(post.user_id).username
     return render_template('topic_posts.html', topic=topic, posts=posts)
+
  
 @app.route('/post/<int:post_id>')
 def post_comments(post_id):
     post = Posts.query.get(post_id)
     if not post:
         return "Post not found", 404
- 
-    # Fetch the user who posted
     post_user = User.query.get(post.user_id)
- 
-    # Fetch comments and their associated users
     comments = db.session.query(Comments, User).join(User, Comments.user_id == User.id).filter(Comments.post_id == post_id).all()
  
     return render_template('post_comments.html', post=post, post_user=post_user, comments=comments)
