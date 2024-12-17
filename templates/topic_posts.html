@@ -7,9 +7,12 @@
 
     <body style="background-color: white">
         <div class="navBar">
-            <span class="welcome"
+            <span class="welcome" style="position: absolute"
                 >Welcome to {{ topic.topic_title }}!<br
             /></span>
+            <nav style="margin-left: 48%">
+                <a class="logout" href="{{ url_for('homepage') }}">Home</a>
+            </nav>
             <nav>
                 <a class="logout" href="{{ url_for('logout') }}">Logout</a>
             </nav>

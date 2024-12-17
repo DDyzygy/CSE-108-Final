@@ -6,7 +6,10 @@
     </head>
     <body style="background-color: #152347be">
         <div class="navBar">
-            <nav style="margin-left: 93.4%">
+            <nav>
+                <a class="logout" href="{{ url_for('homepage') }}">Home</a>
+            </nav>
+            <nav>
                 <a class="logout" href="{{ url_for('logout') }}">Logout</a>
             </nav>
         </div>
